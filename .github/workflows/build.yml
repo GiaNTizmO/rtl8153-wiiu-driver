@@ -1,0 +1,105 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  module:
+    name: Aroma module
+    runs-on: ubuntu-latest
+    # Same toolchain image the vendored wiiu-env libraries use in their Dockerfiles.
+    container: ghcr.io/wiiu-env/devkitppc:20260225
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - name: Ensure git and zip
+        run: |
+          if ! command -v git >/dev/null || ! command -v zip >/dev/null; then
+            apt-get update && apt-get install -y --no-install-recommends git zip ca-certificates
+          fi
+
+      - uses: actions/checkout@v4
+
+      - name: Fetch build submodules
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git submodule update --init vendor/wums vendor/libmocha vendor/functionpatcher
+
+      - name: Version
+        id: version
+        shell: bash
+        run: |
+          if [[ "$GITHUB_REF_TYPE" == "tag" ]]; then
+            version="${GITHUB_REF_NAME#v}"
+          else
+            version="dev-${GITHUB_SHA::7}"
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Build
+        shell: bash
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: bash scripts/build.sh
+
+      - name: Package
+        shell: bash
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          set -euo pipefail
+          licenses=dist/sd/wiiu/rtl8153/licenses
+          mkdir -p "$licenses" release
+          cp LICENSE "$licenses/PROJECT-GPL-3.0.txt"
+          cp vendor/lwip/COPYING "$licenses/lwIP-BSD.txt"
+          cp vendor/wums/LICENSE "$licenses/WUMS.txt"
+          cp vendor/libmocha/LICENSE "$licenses/libmocha.txt"
+          cp vendor/functionpatcher/LICENSE "$licenses/libfunctionpatcher.txt"
+          awk '/uint16_t/ {exit} {print}' driver/rtl8153_bsd.inc > "$licenses/OpenBSD-BSD.txt"
+          (cd dist/sd && zip -r -X "../../release/RTL8153Module-$VERSION-sd.zip" wiiu)
+          cp aroma_module/RTL8153Module.wms release/
+          (cd release && sha256sum * > SHA256SUMS.txt && cat SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RTL8153Module-${{ steps.version.outputs.version }}
+          path: release/
+          if-no-files-found: error
+
+  host-tests:
+    name: Host tests (ASan/UBSan)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run scripts/test.sh
+        run: bash scripts/test.sh
+
+  release:
+    name: GitHub Release
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [module, host-tests]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: RTL8153Module-${{ needs.module.outputs.version }}
+          path: release
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: release/*
+          prerelease: ${{ contains(github.ref_name, '-') }}
+          generate_release_notes: true
+          body: |
+            Aroma module (PPC). Not system-wide: it hooks the running title's and the Wii U Menu's
+            nsysnet sockets and routes them through its own lwIP stack over the RTL8153 adapter.
+            Keep Wi-Fi configured. See README for installation and limitations.

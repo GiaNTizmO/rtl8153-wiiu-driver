@@ -24,7 +24,11 @@
 
 WUMS_MODULE_EXPORT_NAME("homebrew_rtl8153");
 WUMS_MODULE_AUTHOR("RTL8153 port; networking base by wozt");
-WUMS_MODULE_VERSION("0.1.1-recovery-fix");
+/* Release builds pass VERSION=<tag> to make; local builds keep this default. */
+#ifndef RTL8153_VERSION
+#define RTL8153_VERSION "0.1.1-recovery-fix"
+#endif
+WUMS_MODULE_VERSION(RTL8153_VERSION);
 WUMS_MODULE_DESCRIPTION("RTL8153 usermode Ethernet, DHCP, and nsysnet shim at boot");
 
 WUMS_USE_WUT_DEVOPTAB();

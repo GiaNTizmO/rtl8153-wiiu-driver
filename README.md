@@ -1,173 +1,192 @@
-# RTL8153 USB Ethernet для Wii U (Aroma)
+# RTL8153 USB Ethernet for Wii U (Aroma)
 
-Проводной Ethernet для Wii U через USB-адаптеры Realtek **RTL8153 / RTL8153B**
-(VID:PID `0BDA:8153`). Цель: Wii U 5.5.6 с актуальной [Aroma](https://aroma.foryour.cafe/).
+**English** | [Русский](README.ru.md)
 
-> **English summary.** An Aroma (WUMS) module that gives Wii U homebrew and games
-> wired Ethernet over a Realtek RTL8153/8153B USB adapter. It is **not
-> system-wide yet**: it intercepts the `nsysnet` socket API of the running title
-> and the Wii U Menu and routes that traffic through its own lwIP stack. The
-> console's system network stack (IOS-NET) still uses Wi-Fi. A native IOS-NET
-> driver is in development and is **not installable**.
+Wired Ethernet for the Wii U through Realtek **RTL8153 / RTL8153B** USB
+adapters (VID:PID `0BDA:8153`). Target: Wii U 5.5.6 with a current
+[Aroma](https://aroma.foryour.cafe/) environment.
 
-## Как это работает сейчас
+## How it works today
 
-Драйвер работает **не на уровне всей системы**. Это модуль Aroma
-`RTL8153Module.wms`, который работает на PowerPC рядом с приложением:
+The driver is **not system-wide yet**. It is an Aroma module,
+`RTL8153Module.wms`, that runs on the PowerPC side next to the running title:
 
 ```
-приложение / игра / Wii U Menu
+title / game / Wii U Menu
         │  socket(), connect(), sendto(), recvfrom(), select(), DNS …
         ▼
-перехват nsysnet (FunctionPatcher)  ──►  собственный стек lwIP (DHCP, ARP, TCP, UDP, DNS)
-                                               │
-                                               ▼
-                                   UHS (USB host) → RTL8153 → кабель → роутер
+nsysnet hooks (FunctionPatcher)  ──►  own lwIP stack (DHCP, ARP, TCP, UDP, DNS)
+                                            │
+                                            ▼
+                                UHS (USB host) → RTL8153 → cable → router
 ```
 
-Как это устроено:
-- Модуль сам находит адаптер, инициализирует RTL8153, поднимает линк и получает
-  **собственный IP по DHCP**. MAC читается из адаптера.
-- Сокеты, которые создаёт текущее приложение (процесс GAME) или Wii U Menu,
-  перехватываются и идут через кабель. Сокеты, созданные до перехвата, и
-  процесс ROOT_RPX остаются на штатной сети.
-- Системный сетевой стек приставки (IOS-NET) про адаптер **не знает**. Системные
-  настройки, системный DHCP, фоновые службы Nintendo и всё, что работает
-  внутри IOS, продолжают использовать Wi-Fi.
-- **Wi-Fi нужно оставить настроенным.** Многие приложения перед работой
-  проверяют подключение через системный стек.
-- После смены приложения модуль по умолчанию заново получает DHCP-аренду
+How it is set up:
+- The module finds the adapter, initialises the RTL8153, brings up the link
+  and obtains **its own IP address via DHCP**. The MAC address is read from the
+  adapter.
+- Sockets created by the running title (the GAME process) or by the Wii U Menu
+  are intercepted and go over the cable. Sockets created before the hooks were
+  installed, and the ROOT_RPX process, stay on the console's normal network.
+- The console's system network stack (IOS-NET) **does not know about the
+  adapter**. System settings, system DHCP, Nintendo background services and
+  everything else that runs inside IOS keep using Wi-Fi.
+- **Keep Wi-Fi configured.** Many titles check connectivity through the system
+  stack before they start networking.
+- By default the module requests a fresh DHCP lease after every title switch
   (`mode=always`).
 
-### Что проверено на приставке
+### Tested on hardware
 
-- IP по DHCP, ответ на ping, FTP.
-- Браузер открывает сайты.
-- Переходы приложение → Menu.
+- DHCP address, ping replies, FTP.
+- The browser opens websites.
+- Switching from a title back to the Menu.
 
-### Что не проверено или не поддерживается
+### Not tested or not supported
 
-- Работа без Wi-Fi.
-- Системные службы, eShop, Download Manager.
-- Все игры. Moonlight и другие стриминговые клиенты отдельно не проверялись.
-- Скорость не измерялась. USB 2.0 даёт до 480 Мбит/с до накладных расходов;
-  гигабитный линк RJ45 не означает гигабитного трафика.
-- Старая база сертификатов Nintendo TLS даёт предупреждения на части сайтов.
-- vWii, IPv6, RTL8156 и другие VID:PID не поддерживаются.
+- Running without Wi-Fi.
+- System services, eShop, Download Manager.
+- Every game. Moonlight and other streaming clients have not been tested.
+- Throughput has not been measured. USB 2.0 tops out at 480 Mbit/s before
+  overhead; a gigabit RJ45 link does not mean gigabit traffic.
+- Nintendo's old TLS certificate store causes warnings on some websites.
+- vWii, IPv6, RTL8156 and other VID:PIDs are not supported.
 
-## Установка (PPC-модуль)
+## Installation (PPC module)
 
-Готовых релизов пока нет, модуль собирается из исходников (см. ниже).
+Download `RTL8153Module-<version>-sd.zip` from the
+[Releases](https://github.com/GiaNTizmO/rtl8153-wiiu-driver/releases) page.
 
-1. Скопируйте `RTL8153Module.wms` в `SD:/wiiu/environments/aroma/modules/`.
-2. Скопируйте `aroma_module/config.ini` в `SD:/wiiu/rtl8153/config.ini`.
-3. Нужны модули Aroma **FunctionPatcher** и **Mocha**. Не используйте
-   одновременно AX88179Module или другой модуль, перехватывающий сеть.
-4. Подключите адаптер к Wii U до загрузки, кабель — к роутеру с DHCP.
-5. Журнал пишется в `SD:/wiiu/rtl8153/driver.log`.
+1. Extract the archive to the root of the SD card. It contains
+   `wiiu/environments/aroma/modules/RTL8153Module.wms` and
+   `wiiu/rtl8153/config.ini`. If you already have a tuned `config.ini`, keep it.
+2. The Aroma **FunctionPatcher** and **Mocha** modules are required. Do not
+   run AX88179Module or any other module that hooks networking at the same time.
+3. Plug the adapter into the Wii U before booting, and connect the cable to a
+   router with DHCP.
+4. The log is written to `SD:/wiiu/rtl8153/driver.log`.
 
-Чтобы удалить модуль, удалите `.wms` с SD и перезагрузите приставку. В NAND
-ничего не записывается: патч UHS применяется только в RAM и только после
-проверки исходной инструкции.
+To uninstall, delete the `.wms` from the SD card and reboot. Nothing is written
+to NAND: the UHS patch is applied in RAM only, after the original instruction
+has been verified.
 
-### Настройка (`config.ini`)
+### Configuration (`config.ini`)
 
-| Ключ | Значение |
+| Key | Meaning |
 |---|---|
-| `[dhcp] mode` | `always` — новая аренда после смены приложения; `keep_first` — повторно использовать IP |
-| `[compat] route` | `ax` — новые сокеты идут через адаптер; `native` — через штатную сеть |
-| `[compat] dns` | `ax` — DNS через адаптер; `system` — системный DNS |
-| `[compat] nssl` | `bridge` — мост Nintendo TLS (NSSL) через адаптер |
-| `[debug] shim_trace` | `0` выкл., `1` общий, `2` подробный журнал сокетов |
+| `[dhcp] mode` | `always` — new lease after each title switch; `keep_first` — reuse the first IP |
+| `[compat] route` | `ax` — new sockets use the adapter; `native` — the console's network |
+| `[compat] dns` | `ax` — DNS over the adapter; `system` — system DNS |
+| `[compat] nssl` | `bridge` — route Nintendo TLS (NSSL) over the adapter |
+| `[debug] shim_trace` | `0` off, `1` general, `2` verbose socket log |
 
-`ax` — имя режима, унаследованное от исходного AX88179-проекта; здесь оно
-означает путь RTL8153/lwIP.
+`ax` is a mode name inherited from the original AX88179 project; here it means
+the RTL8153/lwIP path.
 
-## Нативный драйвер IOS-NET (в разработке)
+## Native IOS-NET driver (in development)
 
-Конечная цель — настоящий системный драйвер внутри IOS-NET (ARM). Тогда
-адаптер будет работать как штатный LAN для всей системы: системный DHCP,
-настройки, все приложения, работа без Wi-Fi. **Этот путь пока не работает и
-не устанавливается.**
+The end goal is a real system driver inside IOS-NET (ARM). The adapter would
+then work as the console's own LAN interface for the whole system: system DHCP,
+settings, every title, no Wi-Fi needed. **This path does not work yet and
+cannot be installed.**
 
-| Часть | Состояние |
+| Part | State |
 |---|---|
-| ARM-ядро RTL8153, framing, RX/TX-адаптеры, completion tokens | Исходники; host-тесты и ARM-эмуляция с реальной прошивкой 5.5.6 |
-| TX binding / I/O router | Исходники, ещё не проверены |
-| Загрузка кода в IOS-NET (Aroma/Mocha) | Выделение памяти в NET проверено на приставке. Исполнение кода из NET heap подготовлено как диагностический кандидат, на железе не проверено |
-| Регистрация ops, передача USB от PPC, системный DHCP | Не начато на железе |
+| ARM RTL8153 core, framing, RX/TX adapters, completion tokens | Source; host tests and ARM emulation against the real 5.5.6 firmware |
+| TX binding / I/O router | Source, not yet tested |
+| Loading code into IOS-NET (Aroma/Mocha) | Memory allocation inside NET verified on hardware. Executing code from the NET heap is prepared as a diagnostic candidate, not verified on hardware |
+| Ops registration, USB handoff from PPC, system DHCP | Not started on hardware |
 
-Подробнее:
-- [docs/handoff/README.md](docs/handoff/README.md) — текущее состояние;
-- [docs/NATIVE_LOADER_DESIGN.md](docs/NATIVE_LOADER_DESIGN.md) — загрузчик;
-- [docs/MOCHA_ENTRY_DIAGNOSTIC.md](docs/MOCHA_ENTRY_DIAGNOSTIC.md) — entry-диагностика;
-- [docs/NATIVE_COMPLETION_ABI.md](docs/NATIVE_COMPLETION_ABI.md) — ABI completion.
+Details (in English and Russian):
+- [docs/handoff/README.md](docs/handoff/README.md) — current state;
+- [docs/NATIVE_LOADER_DESIGN.md](docs/NATIVE_LOADER_DESIGN.md) — loader;
+- [docs/MOCHA_ENTRY_DIAGNOSTIC.md](docs/MOCHA_ENTRY_DIAGNOSTIC.md) — entry diagnostic;
+- [docs/NATIVE_COMPLETION_ABI.md](docs/NATIVE_COMPLETION_ABI.md) — completion ABI.
 
-Диагностические сборки Mocha меняют boot-payload. Их нельзя ставить без понимания
-процедуры восстановления.
+The Mocha diagnostic builds replace the boot payload. Do not install them
+without understanding the recovery procedure.
 
-## Сборка
+## Building
 
-Нужны devkitPro (devkitPPC, devkitARM, wut) и Linux/WSL.
+You need devkitPro (devkitPPC, devkitARM, wut) and Linux/WSL.
 
 ```bash
 git clone --recursive https://github.com/GiaNTizmO/rtl8153-wiiu-driver.git
 ```
 
-Если репозиторий уже склонирован без `--recursive`:
+If you cloned without `--recursive`:
 
 ```bash
 git submodule update --init
 ```
 
-Сборка PPC-модуля (результат — `dist/sd/`):
+Build the PPC module (output in `dist/sd/`):
 
 ```bash
 DEVKITPRO=/opt/devkitpro bash scripts/build.sh
 ```
 
-Host-тесты (gcc с ASan/UBSan):
+GitHub Actions (`.github/workflows/build.yml`) runs the same build in the
+`ghcr.io/wiiu-env/devkitppc` image on every push to `main` and on pull
+requests; the built module is kept as a workflow artifact.
+
+### Releasing a version
+
+```bash
+git tag v0.2.0
+git push origin v0.2.0
+```
+
+A `v*` tag makes CI build the module with that version (shown in Aroma) and
+create a GitHub Release with:
+- `RTL8153Module-<version>-sd.zip` — ready-to-copy SD layout;
+- `RTL8153Module.wms`;
+- `SHA256SUMS.txt`.
+
+A tag with a hyphen (`v0.2.0-beta1`) is published as a pre-release.
+
+Host tests (gcc with ASan/UBSan):
 
 ```bash
 bash scripts/test.sh
 ```
 
-ARM-ядро native-драйвера:
+Native driver ARM core:
 
 ```bash
 bash scripts/build_native_core.sh
 ```
 
-Скрипты собирают зависимости только внутри `vendor/` и `build/` проекта:
-`make install` нет, toolchain не изменяется. Тестам с ARM-эмуляцией нужен
-Python с Unicorn и **собственный** дамп прошивки IOSU 5.5.6. Дамп в репозиторий
-не входит и никогда не будет туда добавлен.
+The scripts build dependencies only inside the project's `vendor/` and
+`build/`: there is no `make install` and the toolchain is never modified. The
+ARM emulation tests need Python with Unicorn and **your own** dump of the 5.5.6
+IOSU firmware. The dump is not part of this repository and never will be.
 
-## Структура
+## Layout
 
-| Путь | Содержимое |
+| Path | Contents |
 |---|---|
-| `aroma_module/` | WUMS-модуль: жизненный цикл, перехват nsysnet, патч UHS, журнал |
-| `driver/` | Транспорт UHS и регистры/инициализация RTL8153 (PPC) |
-| `net/` | Интеграция lwIP, таймеры, sys_arch |
-| `native/` | ARM-код для IOS-NET, ABI, адаптеры RX/TX, загрузчик и диагностики |
-| `tools/` | Read-only пробы для приставки (native probe, boot/entry state) |
-| `scripts/`, `tests/` | Сборка, проверки, host-тесты и ARM-эмуляция |
-| `docs/` | Исследования, ABI, состояние и журнал решений |
-| `references/` | Справочные драйверы (Linux r8152, OpenBSD/FreeBSD ure, U-Boot) |
-| `vendor/` | lwIP; submodule'ы WUMS, libmocha, libfunctionpatcher |
-| `upstream/` | Submodule'ы MochaPayload, Stroopwafel, libstroopwafel, AX88179 Aroma Driver |
+| `aroma_module/` | WUMS module: lifecycle, nsysnet hooks, UHS patch, logging |
+| `driver/` | UHS transport and RTL8153 registers/initialisation (PPC) |
+| `net/` | lwIP integration, timers, sys_arch |
+| `native/` | ARM code for IOS-NET, ABI, RX/TX adapters, loader and diagnostics |
+| `tools/` | Read-only console probes (native probe, boot/entry state) |
+| `scripts/`, `tests/` | Build, checks, host tests and ARM emulation |
+| `docs/` | Research, ABI, project state and decision log |
+| `references/` | Reference drivers (Linux r8152, OpenBSD/FreeBSD ure, U-Boot) |
+| `vendor/` | lwIP; submodules WUMS, libmocha, libfunctionpatcher |
+| `upstream/` | Submodules MochaPayload, Stroopwafel, libstroopwafel, AX88179 Aroma Driver |
 
-## Благодарности и лицензии
+## Credits and licences
 
-- Основа Aroma-модуля: [wozt/ax88179_aroma_driver](https://github.com/wozt/ax88179_aroma_driver) (GPL-3.0).
-- Инициализация RTL8153 по [OpenBSD ure(4)](https://github.com/openbsd/src/blob/master/sys/dev/usb/if_ure.c)
-  (BSD, уведомления сохранены в `driver/`). Справочно — Linux `r8152`.
-- [lwIP](https://savannah.nongnu.org/projects/lwip/) (BSD); изменения описаны в `vendor/lwip/UPSTREAM.md`.
+- Aroma module base: [wozt/ax88179_aroma_driver](https://github.com/wozt/ax88179_aroma_driver) (GPL-3.0).
+- RTL8153 initialisation follows [OpenBSD ure(4)](https://github.com/openbsd/src/blob/master/sys/dev/usb/if_ure.c)
+  (BSD; notices kept in `driver/`). Linux `r8152` used as a reference.
+- [lwIP](https://savannah.nongnu.org/projects/lwip/) (BSD); changes are listed in `vendor/lwip/UPSTREAM.md`.
 - [wiiu-env](https://github.com/wiiu-env): WUMS, libmocha, libfunctionpatcher, MochaPayload.
 - [Stroopwafel](https://github.com/StroopwafelCFW/stroopwafel).
 
-Проект распространяется под **GPL-3.0** (см. [LICENSE](LICENSE)). Сторонний код
-сохраняет свои лицензии.
+This project is licensed under **GPL-3.0** (see [LICENSE](LICENSE)).
+Third-party code keeps its own licence.
 
-Проект не связан с Nintendo или Realtek. Используйте на свой риск.
+Not affiliated with Nintendo or Realtek. Use at your own risk.

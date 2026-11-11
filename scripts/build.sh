@@ -11,7 +11,7 @@ fi
 for dep in wums libmocha functionpatcher; do
     make -C "vendor/$dep" -j"$jobs"
 done
-make -C aroma_module SHIM="${SHIM:-1}" -j"$jobs"
+make -C aroma_module SHIM="${SHIM:-1}" VERSION="${VERSION:-}" -j"$jobs"
 mkdir -p dist/sd/wiiu/environments/aroma/modules dist/sd/wiiu/rtl8153
 cp aroma_module/RTL8153Module.wms dist/sd/wiiu/environments/aroma/modules/
 cp aroma_module/config.ini dist/sd/wiiu/rtl8153/

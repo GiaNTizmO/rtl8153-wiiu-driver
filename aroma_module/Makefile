@@ -50,6 +50,11 @@ CXXFLAGS	:= $(CFLAGS) -std=c++17
 ASFLAGS	:=	-g $(ARCH)
 LDFLAGS	=	-g $(ARCH) $(RPXSPECS) -Wl,-Map,$(notdir $*.map) $(WUMSSPECS) 
 
+# VERSION=<string> overrides the version shown by Aroma (used by CI releases).
+ifneq ($(strip $(VERSION)),)
+CFLAGS += -DRTL8153_VERSION=\"$(VERSION)\"
+endif
+
 ifeq ($(SHIM),0)
 CFLAGS += -DAX_DISABLE_SHIM=1
 endif
