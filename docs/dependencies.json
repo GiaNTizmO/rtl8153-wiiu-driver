@@ -1,0 +1,39 @@
+{
+  "networking_base": {
+    "url": "https://github.com/wozt/ax88179_aroma_driver.git",
+    "commit": "558f3a6a4c995590c725dce08eca009e192cff88"
+  },
+  "WiiUModuleSystem": {
+    "url": "https://github.com/wiiu-env/WiiUModuleSystem.git",
+    "commit": "2f0b0303509bbf22bf06747778b5640d6f1c1830"
+  },
+  "libmocha": {
+    "url": "https://github.com/wiiu-env/libmocha.git",
+    "commit": "50fefdf8307a875c63bdbdcf6c973779d4ddac92"
+  },
+  "libfunctionpatcher": {
+    "url": "https://github.com/wiiu-env/libfunctionpatcher.git",
+    "commit": "8e6f361ee5049f615e7651a17f4bc3784180f01f"
+  },
+  "lwIP": {
+    "url": "https://github.com/lwip-tcpip/lwip",
+    "commit": "77dcd25a72509eb83f72b033d219b1d40cd8eb95",
+    "notes": "2.2.1 subset with upstream Aroma lifecycle/socket patches; vendor/lwip/UPSTREAM.md"
+  },
+  "MochaPayload_loader_research": {
+    "url": "https://github.com/wiiu-env/MochaPayload.git",
+    "commit": "383a334fc3e304d403dd69b994baaee3752c01dc",
+    "notes": "local baseline and isolated allocation-only experiment; not deployed"
+  },
+  "libstroopwafel_loader_research": {
+    "url": "https://github.com/StroopwafelCFW/libstroopwafel.git",
+    "commit": "a516bef932edf91415f94b106df3002891530082",
+    "notes": "built inside project only; no install or toolchain changes"
+  },
+  "OpenBSD": {
+    "url": "https://github.com/openbsd/src/tree/master/sys/dev/usb",
+    "if_ure.c": "1.39 2026/11/06",
+    "if_urereg.h": "1.16 2026/11/06",
+    "snapshot": "references/openbsd-if_ure.c and references/openbsd-if_urereg.h"
+  }
+}

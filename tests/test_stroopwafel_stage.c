@@ -1,0 +1,11 @@
+#include "../native/stroopwafel_stage.h"
+#include <assert.h>
+#include <stdio.h>
+#include <string.h>
+typedef struct { unsigned version_calls,map_calls,write_calls,exec_calls; } Mock;
+static int api(void*u,uint32_t*v){Mock*m=u;m->version_calls++;*v=0x010000;return 0;}
+static int map_fn(void*u,const RtlIosMapping*m){Mock*x=u;(void)m;x->map_calls++;return 0;}
+static int write_fn(void*u,uint32_t a,const void*d,uint32_t n){Mock*x=u;(void)a;(void)d;(void)n;x->write_calls++;return 0;}
+static int exec_fn(void*u,uint32_t e,const void*c,uint32_t cn,void*out,uint32_t on){Mock*x=u;(void)e;(void)c;(void)cn;x->exec_calls++;assert(out&&on==4);*(uint32_t*)out=0x52544c50;return 0;}
+static void reject_invalid_layouts(void) { Mock m={0}; RtlIosStroopwafelOps o={api,map_fn,write_fn,exec_fn,&m}; RtlIosStroopwafelStage s={0},before=s; RtlIosMapping map={0x20000000,0x12200000,0x2000,7,1|2|4,0}; assert(rtl_ios_stroopwafel_stage_prepare(&s,&o,&map,24,0x12200000,0x12200000)!=0); assert(rtl_ios_stroopwafel_stage_prepare(&s,&o,&map,24,0x12200000,0x12201001)!=0); assert(rtl_ios_stroopwafel_stage_prepare(&s,&o,&map,24,0x12200000,0x12202000)!=0); assert(rtl_ios_stroopwafel_stage_prepare(&s,&o,&map,5,0x12200004,0x12201000)!=0); assert(!m.version_calls && !m.map_calls && !m.write_calls && !m.exec_calls); assert(memcmp(&s,&before,sizeof(s))==0); }
+int main(void){reject_invalid_layouts();Mock m={0};RtlIosStroopwafelOps o={api,map_fn,write_fn,exec_fn,&m};RtlIosStroopwafelStage s={0};RtlIosMapping map={0x20000000,0x12200000,0x2000,7,1|2|4,0};uint8_t image[24]={0};uint32_t marker=0;assert(rtl_ios_stroopwafel_stage_prepare(&s,&o,&map,24,0x12200000,0x12201000)==0);assert(rtl_ios_stroopwafel_stage_copy(&s,&o,0x12200000,image,24)==0);assert(rtl_ios_stroopwafel_stage_execute_probe(&s,&o,0x12200000,0x12201000,&marker)==0);assert(marker==0x52544c50&&rtl_ios_stroopwafel_stage_arm(&s)==0);assert(s.loader.phase==RTL_IOS_LOADER_ARMED&&m.version_calls==1&&m.map_calls==1&&m.write_calls==1&&m.exec_calls==1);map.flags=1|4;assert(rtl_ios_stroopwafel_stage_prepare(&s,&o,&map,24,0x12200000,0x12201000)!=0);o.api_version=0;map.flags=1|2|4;assert(rtl_ios_stroopwafel_stage_prepare(&s,&o,&map,24,0x12200000,0x12201000)!=0);puts("native Stroopwafel stage: API, map, copy, probe, arm and fail-closed checks passed");}

@@ -1,0 +1,830 @@
+{
+  "snapshot_date": "2026-11-09",
+  "purpose": "handoff identity only; not validation or installation approval",
+  "goal_state": "paused",
+  "latest_tx_binding_router_tested": false,
+  "console_contact_during_handoff": false,
+  "tests_run_during_handoff": false,
+  "files": [
+    {
+      "path": "CLAUDE.md",
+      "bytes": 3598,
+      "sha256": "6b6a2136ab716ece224df54c75e5b650a687b5ec7d6dd09edd6f4cbbaea14e1d"
+    },
+    {
+      "path": "Makefile",
+      "bytes": 775,
+      "sha256": "10bdff4b62430b3badd0b6ba28cb0126fb2cb370a94e323cf938012ad75a6c0f"
+    },
+    {
+      "path": "README.md",
+      "bytes": 9909,
+      "sha256": "3dc63a9a51ce96c2c6dbf5654ce8e443fa10131ea83bd12f71ad75faa7fbf134"
+    },
+    {
+      "path": "aroma_module/Makefile",
+      "bytes": 6523,
+      "sha256": "1a7979d67302384b32e95e007321068cf49eb29e630fbc257bf6a445a861bac9"
+    },
+    {
+      "path": "aroma_module/README.md",
+      "bytes": 540,
+      "sha256": "59e0509bc441953919ae2a2742fd27822d88b5a3449c2164ff87d75f9bf28be6"
+    },
+    {
+      "path": "aroma_module/debug_abort.c",
+      "bytes": 1020,
+      "sha256": "09eebae43a98ed77200d3e6f00abf5746a6984b362e1c2c74ce3d4e819a0be8e"
+    },
+    {
+      "path": "aroma_module/debug_progress.h",
+      "bytes": 973,
+      "sha256": "57f5a2a056ce6c9183049dcfa230606dd73a2d529766621c4acff971c9afff4a"
+    },
+    {
+      "path": "aroma_module/iosu_patch.c",
+      "bytes": 2722,
+      "sha256": "42b234aed1f5113514d4d25d9b945aeeb1c04347228eb6f5f1f8425b5ca9e5d7"
+    },
+    {
+      "path": "aroma_module/iosu_patch.h",
+      "bytes": 654,
+      "sha256": "df9adb2d51a174a842940369ee11a87fad729d93aa2ecf140940c9b125c34695"
+    },
+    {
+      "path": "aroma_module/main.c",
+      "bytes": 26104,
+      "sha256": "cf9900c054e54a46bc28275389aeccc4f3ba9ee59a8eee07047a0b2d8428aac6"
+    },
+    {
+      "path": "aroma_module/nsysnet_shim.c",
+      "bytes": 138622,
+      "sha256": "5f25e4120b7b5b3ca3a83840521d8a14ce9ef270103f2fe01befd59fd373ae87"
+    },
+    {
+      "path": "aroma_module/nsysnet_shim.h",
+      "bytes": 1002,
+      "sha256": "58a16e08b9a33bd950624ce1544f24129b557d77f3d87629e92bad2287795815"
+    },
+    {
+      "path": "aroma_module/rtl_log.c",
+      "bytes": 1130,
+      "sha256": "6bf52219ba4f4555fb2baac7cf7a4c13b123e2141eeaccfb71bc831d63463542"
+    },
+    {
+      "path": "aroma_module/rtl_log.h",
+      "bytes": 87,
+      "sha256": "ff9b3de0a5a6a7763f2d07692d362c966bec2b65316c1510427aa095aae67d0f"
+    },
+    {
+      "path": "build/native/rtl8153_ios.rel.elf",
+      "bytes": 42824,
+      "sha256": "11dbbaed42e36c13e5f2a390fbb4d9dea24ee0f353880578ca6997b3ec603bd6"
+    },
+    {
+      "path": "docs/MOCHA_RELOAD_DIAGNOSTIC_AUDIT.md",
+      "bytes": 6600,
+      "sha256": "3c2877e574d37ce6ae9ad1e2512e51c43b4aa422a4b51a398842efe4737f15c9"
+    },
+    {
+      "path": "docs/NATIVE_COMPLETION_ABI.md",
+      "bytes": 15028,
+      "sha256": "01d1dbbdb438cefdbf893d0f17f90d3ae517b99706c7151896e5d0152d7315e5"
+    },
+    {
+      "path": "docs/NATIVE_LOADER_DESIGN.md",
+      "bytes": 15070,
+      "sha256": "2a23e1b68067fa18c7d0f47f1ec47ba4da83b98c4398a91c7d643885ee21b6f8"
+    },
+    {
+      "path": "docs/dependencies.json",
+      "bytes": 1535,
+      "sha256": "2fce1a67ed3488a5a58184957c36361bb826366c5ff327d414e42e54feaee15e"
+    },
+    {
+      "path": "docs/handoff/ARCHITECTURE.md",
+      "bytes": 8989,
+      "sha256": "8900e521cde7b7a368be8a809c274a3206ec4a31532a187e166f258cbc1edeec"
+    },
+    {
+      "path": "docs/handoff/BUILD_AND_TEST.md",
+      "bytes": 5630,
+      "sha256": "f7f565bc419f8a061312afbd8611dfcfbce5423264026a563cc65dbb2023e262"
+    },
+    {
+      "path": "docs/handoff/CLAUDE_PROMPT.md",
+      "bytes": 5277,
+      "sha256": "9528f9ff38bf5591d2c927f75b97872bd7a2f2f6ecf99bbc38eff2ef538567d4"
+    },
+    {
+      "path": "docs/handoff/CONSOLE.md",
+      "bytes": 5585,
+      "sha256": "6531a40526b1039b692f6f530e4daa4440e72814c1682fda90651c90d470ee59"
+    },
+    {
+      "path": "docs/handoff/CURRENT_STATE.md",
+      "bytes": 5756,
+      "sha256": "77ad2f87756d072240e21aacc6a3fba2b13247bbf27e4001aae9f02bfe9cb5a0"
+    },
+    {
+      "path": "docs/handoff/EVIDENCE.md",
+      "bytes": 6346,
+      "sha256": "0fbf56784fadcd42b9e6b0ebf7d5b1f032e8827265fdd92d8ab4e3a971d51f05"
+    },
+    {
+      "path": "docs/handoff/NEXT_WORK.md",
+      "bytes": 7828,
+      "sha256": "7b4c74c7bf4a8d5f5b237248fc1934bfd51d1523e6ae34a90e4ce36320337433"
+    },
+    {
+      "path": "docs/handoff/README.md",
+      "bytes": 4566,
+      "sha256": "61f426c6f25cdf9b20c8813f2392b67092f67c7316b85c6b55535cd006c1c7cd"
+    },
+    {
+      "path": "driver/rtl8153.c",
+      "bytes": 19986,
+      "sha256": "7a54695c1cbee18afc49508988682ee5ea56be66bc46c6fd7f7ad60ca4a0e5f3"
+    },
+    {
+      "path": "driver/rtl8153.h",
+      "bytes": 3646,
+      "sha256": "34e09196a5a0c4d5635e8c7a0078910569999faeb043d8ad9988eef9954298a2"
+    },
+    {
+      "path": "driver/rtl8153_bsd.inc",
+      "bytes": 5115,
+      "sha256": "c78f63e8d28e07227406c6655349b774bb540e695dbb14d7f62647e6e9e1501c"
+    },
+    {
+      "path": "driver/rtl8153_chip.inc",
+      "bytes": 11927,
+      "sha256": "ec54641c9026cab8d7b85262b7ccb0bbe77e3c2df7101ab3705a27377830d02e"
+    },
+    {
+      "path": "driver/rtl8153_framing.c",
+      "bytes": 1893,
+      "sha256": "f70b07772cb8b386fba2db72ac490ed5d4fedf3dcacde8ef6fb2279246f4b6f9"
+    },
+    {
+      "path": "driver/rtl8153_framing.h",
+      "bytes": 379,
+      "sha256": "ed965ce5b5d4dcb36b2b88cfa5fe1f567459508a3eac604df2bc3e2d22c9a040"
+    },
+    {
+      "path": "driver/rtl8153_packets.inc",
+      "bytes": 2787,
+      "sha256": "85c71adbfe0ab6175320c4caffebc464edd58670deb62654ac2ed7222426c8df"
+    },
+    {
+      "path": "driver/rtl8153_regs.h",
+      "bytes": 16272,
+      "sha256": "878c2f7930b94935e3a14faba8bdaeab9cc2c06df11cba67936894bd38321fa5"
+    },
+    {
+      "path": "native/batch_bridge.c",
+      "bytes": 3000,
+      "sha256": "c4d3f2d6abd28d87bb84988a1e4c7e14c42e2a07b7faf5cbc190c8edb3bb14e6"
+    },
+    {
+      "path": "native/batch_bridge.h",
+      "bytes": 1681,
+      "sha256": "e37c35bddc3b16be518dedad0fcad812e8370f01f55748d6055e8671663e078e"
+    },
+    {
+      "path": "native/completion_bridge.c",
+      "bytes": 2786,
+      "sha256": "25f04df1fea9eef139ed4562813150e5985ac4cac565c86b84cc58fc41100056"
+    },
+    {
+      "path": "native/completion_bridge.h",
+      "bytes": 1967,
+      "sha256": "036c4215228ab803b98408da6134cba83fc5bae289fdb0efc4df3d083d9a294d"
+    },
+    {
+      "path": "native/completion_tokens.c",
+      "bytes": 5573,
+      "sha256": "8ac5c8cbbbfe6c2108555e363b2244a084c90209bb8725ceba5bbf6354dc2847"
+    },
+    {
+      "path": "native/completion_tokens.h",
+      "bytes": 3011,
+      "sha256": "6d8fde2d3d6ee50e3d8f5643dbe4d13d597023db9363128b08882002e4009fb0"
+    },
+    {
+      "path": "native/discovery_guard.c",
+      "bytes": 1600,
+      "sha256": "b848de3838d2d520a039657c4597bebb324ad43ae1380477d14b13a98377f865"
+    },
+    {
+      "path": "native/discovery_guard.h",
+      "bytes": 625,
+      "sha256": "f31666745be50636ab3a70c801dac2236e0fbcc13de14fce63c9a070fd8b11f3"
+    },
+    {
+      "path": "native/entry_probe.c",
+      "bytes": 692,
+      "sha256": "d585389936f7dff294ea0bcccfd8c7248716a86091351f2603549886d21ac918"
+    },
+    {
+      "path": "native/firmware_556.h",
+      "bytes": 1505,
+      "sha256": "157de450af494febd263994850b4876e3c08b63009d718efe32140ac7418ddfc"
+    },
+    {
+      "path": "native/firmware_io.c",
+      "bytes": 838,
+      "sha256": "e58783e8b37212c9ded213b04115c77ba4dc0bf24036d0b08af2da5835daf0e1"
+    },
+    {
+      "path": "native/firmware_io.h",
+      "bytes": 658,
+      "sha256": "dc7dbb8955ecf375878b0495b0a32ebac62a99e90197c569d65987c86f0b4be5"
+    },
+    {
+      "path": "native/firmware_rx.c",
+      "bytes": 7548,
+      "sha256": "8bfb26291c8cb40b7a7b6cc361df7249d6cce574b032b87c083a963f0bf83bed"
+    },
+    {
+      "path": "native/firmware_rx.h",
+      "bytes": 3403,
+      "sha256": "0b7c039bacb0822468da02370e3cea5a9d9dc4536304c0037b76fa17387a7e61"
+    },
+    {
+      "path": "native/firmware_rx_binding.c",
+      "bytes": 2862,
+      "sha256": "8257884209d305ce8bec1636bd4d5fa10e04b0e7379c88d5e4bc101c0284c1c5"
+    },
+    {
+      "path": "native/firmware_rx_binding.h",
+      "bytes": 1021,
+      "sha256": "b00812f195fb438bd5ce9c5a5b974c819f57f24b1dfc61f79a9d92926773aae5"
+    },
+    {
+      "path": "native/firmware_tx.c",
+      "bytes": 6421,
+      "sha256": "f5fa0d2ee2a9af3bf2aa3fef67cf8c24c1ba12ca12edee4321d5209386802588"
+    },
+    {
+      "path": "native/firmware_tx.h",
+      "bytes": 1749,
+      "sha256": "95ac1cb4c34187889ef0eb95cf650fc247cc4197d3b2a8b022f14ea82e632d32"
+    },
+    {
+      "path": "native/firmware_tx_binding.c",
+      "bytes": 2028,
+      "sha256": "aaaaa9395754a7707f3a239d06e9a6401660bf45623ce4e88699d06248472ce2"
+    },
+    {
+      "path": "native/firmware_tx_binding.h",
+      "bytes": 680,
+      "sha256": "270773b6a7252795e42b21263b3dc0992409b3f0246f63f9efad5b3a2b81d73a"
+    },
+    {
+      "path": "native/frame_adapter.c",
+      "bytes": 2041,
+      "sha256": "92598bc681a565da2a6556a8fc6b89de3703cac346feef602c18b68a29f4be32"
+    },
+    {
+      "path": "native/frame_adapter.h",
+      "bytes": 784,
+      "sha256": "f3f771c857b545b9bc6cb6a37c52ffa6f2100fdbc485986e3fc60b1da26e8f8f"
+    },
+    {
+      "path": "native/freestanding_memory.c",
+      "bytes": 433,
+      "sha256": "248293d5dbd6d494a6022cccd83af09dbe43fa565f5fb7d65be7ced652c7bbcf"
+    },
+    {
+      "path": "native/ios_completion_adapter.c",
+      "bytes": 2227,
+      "sha256": "02e443946c38029799dde6201f7cf50428e62d9201908429aeea9144c90722e1"
+    },
+    {
+      "path": "native/ios_completion_adapter.h",
+      "bytes": 2211,
+      "sha256": "2ea43a083df911083b516bde57bf333d2481955ba1bfb4981d4810163e3f8047"
+    },
+    {
+      "path": "native/ios_net_abi.h",
+      "bytes": 3684,
+      "sha256": "dc40af5a0e03e16fdd53817926e87c1734237d703c543e60be643373ca55faf5"
+    },
+    {
+      "path": "native/ios_profile.c",
+      "bytes": 1460,
+      "sha256": "ddd6445199a7a4728c95b54fd028f8cb4b8a2141174832bc911333de41640b21"
+    },
+    {
+      "path": "native/ios_profile.h",
+      "bytes": 766,
+      "sha256": "0e65216ca00c9f901a80a351b09912e763c8b6830799f3df2f5474e70b5e04dc"
+    },
+    {
+      "path": "native/loader_contract.c",
+      "bytes": 2786,
+      "sha256": "5fab414823467fbdac9f0cf0bfb9f06e133a4d853fdce03c958ce5b16044e375"
+    },
+    {
+      "path": "native/loader_contract.h",
+      "bytes": 1758,
+      "sha256": "972abe5071646094c9fa41e75def924da7c663aca02cd3f312642bc00d10b9cf"
+    },
+    {
+      "path": "native/mocha_alloc_probe.c",
+      "bytes": 2434,
+      "sha256": "d6ac241d712a8ba1ef13873b023e791715f7066067dd2d65f96fda3533429f0d"
+    },
+    {
+      "path": "native/mocha_alloc_probe_entry.S",
+      "bytes": 662,
+      "sha256": "eb96ee31b265c72b98e3876e66d696a2cde699c7b9e19b6ecadf42d27f1791a6"
+    },
+    {
+      "path": "native/mocha_alloc_status.h",
+      "bytes": 922,
+      "sha256": "8598cd39f53b385106123787149ba42866fb1218a39d6969fe6fea5784f331db"
+    },
+    {
+      "path": "native/native_glue.c",
+      "bytes": 7532,
+      "sha256": "e1af992feae6dcaf4e8a8a47d98e4a7ed0d5d5ebb8644f32d7dd50bc3b37e6c6"
+    },
+    {
+      "path": "native/native_glue.h",
+      "bytes": 2614,
+      "sha256": "361f0a2819083473b4ed7794d911f9080eefc13e9125ffc1cee9196cbd42324e"
+    },
+    {
+      "path": "native/ops_table.c",
+      "bytes": 1521,
+      "sha256": "7652b4094b80f04e7c7582d09b90ddbd619500acec8dad3a920ea28a567a633a"
+    },
+    {
+      "path": "native/ops_table.h",
+      "bytes": 592,
+      "sha256": "0ba3cfcd421e48f66a2d3e117213b9f51b7b877665424afad0b8d5e95ebdfc89"
+    },
+    {
+      "path": "native/rtl8153_ios_core.c",
+      "bytes": 3302,
+      "sha256": "5df80b7dcfd3317da80a58d6d2212ba80ba19608aac02020a7197a6593178aee"
+    },
+    {
+      "path": "native/rtl8153_ios_core.h",
+      "bytes": 980,
+      "sha256": "c0d021835a5085e196a680f70187350d4e44f006f4caf3c88c652ad57548ad52"
+    },
+    {
+      "path": "native/stroopwafel_stage.c",
+      "bytes": 2612,
+      "sha256": "f2e27e433ba7ea6f51a2dfcc995dec26c26a640771ad72f733a02ade55028cdd"
+    },
+    {
+      "path": "native/stroopwafel_stage.h",
+      "bytes": 1202,
+      "sha256": "2bd8af4bde471014a78879b1cbe2ef874d1d26d636790309c11d8dab04d79157"
+    },
+    {
+      "path": "native/transfer_owner.c",
+      "bytes": 3851,
+      "sha256": "55e500fb1984dce7fb000331fadf4febc45d6c37f13c85a030d330aa9a9e3911"
+    },
+    {
+      "path": "native/transfer_owner.h",
+      "bytes": 2214,
+      "sha256": "101be3416b91f9bba5375aa72bca7aaeb0b54c8ffeb80565d73d90f6c1921914"
+    },
+    {
+      "path": "native/uhs_transport.c",
+      "bytes": 2400,
+      "sha256": "24bab021776e957a79a390bf275b1ead0d2c9b2c1ddcdc14c5be791b23807a16"
+    },
+    {
+      "path": "native/uhs_transport.h",
+      "bytes": 2737,
+      "sha256": "99a7680193ef26479747e98c64c22585196beebe521efe033b7dc4dc8e4c7594"
+    },
+    {
+      "path": "net/ax_net.c",
+      "bytes": 16432,
+      "sha256": "221d19479aaac28fa236a203d5069c08f068e7e47c6affa82491d03d7eb5ccf4"
+    },
+    {
+      "path": "net/ax_net.h",
+      "bytes": 1347,
+      "sha256": "c40b006837c0ef65404ee57d8478af12e035f752b5c855943a5e1e7442851de0"
+    },
+    {
+      "path": "net/port/arch/cc.h",
+      "bytes": 754,
+      "sha256": "0206edba167de99ed70bc999ddc435f832676e1007dca2c25f0bf314c6ff6e5b"
+    },
+    {
+      "path": "net/port/arch/sys_arch.h",
+      "bytes": 464,
+      "sha256": "21184cf6660e6440f2d013477c184a5d0bb3ed67308727cd305ded7ea27eb353"
+    },
+    {
+      "path": "net/port/lwip_port_reset.h",
+      "bytes": 1317,
+      "sha256": "1f3080f93373bcaead154c9dbac7c67cca57af12d587310f9d04cbf8b20c2074"
+    },
+    {
+      "path": "net/port/lwipopts.h",
+      "bytes": 4973,
+      "sha256": "09a065eca169f1a2a28260eb03b4ddfa19850d20a66c50c6e67550bfba9c0eb7"
+    },
+    {
+      "path": "net/port/net_heartbeat.c",
+      "bytes": 584,
+      "sha256": "4c2cf5af0ebf39f5c8c73e1877c736cb9af1d6011c373b2e56893edfdeb49917"
+    },
+    {
+      "path": "net/port/net_heartbeat.h",
+      "bytes": 358,
+      "sha256": "f14ca379144d7ed6b26f7d631eb541f6c3a04b70b8b1b400b691d279f93fb48f"
+    },
+    {
+      "path": "net/port/sys_arch.c",
+      "bytes": 7845,
+      "sha256": "912c82af9c05feba2fbf94cbe9d35f987e737b9fcd8237a6fd5ef89792ea12d3"
+    },
+    {
+      "path": "scripts/build.sh",
+      "bytes": 656,
+      "sha256": "2a5ee344ba2720832b17428eaea312bafa7bca1d7c3a3eccfb319de88b9695c1"
+    },
+    {
+      "path": "scripts/build_loader_capability_probe.sh",
+      "bytes": 635,
+      "sha256": "39c10a8a0af9b51bc394433a27bb27a5686b19978d90a926fa8da9dcf516f244"
+    },
+    {
+      "path": "scripts/build_mocha_alloc_candidate.sh",
+      "bytes": 2100,
+      "sha256": "b073f0167c35108b214874d35f256e318c3068bf57c723f5b18ddff39bb159fe"
+    },
+    {
+      "path": "scripts/build_mocha_alloc_experiment.sh",
+      "bytes": 1394,
+      "sha256": "2907e84df5654333de4632253dc8a24cc3e19ec10d0f2e62ace6eed5b42517ba"
+    },
+    {
+      "path": "scripts/build_mocha_baseline.sh",
+      "bytes": 664,
+      "sha256": "d1e5aca35ac6b3a1f85b015bbba89d711667f5d475171bde115e7f5cc4e41c8e"
+    },
+    {
+      "path": "scripts/build_mocha_boot_state.sh",
+      "bytes": 614,
+      "sha256": "bbf69b04c9707bb8c651ae985be33c8121ecb3a9b23ce24b33bd5178ee7bd25a"
+    },
+    {
+      "path": "scripts/build_native_core.sh",
+      "bytes": 3921,
+      "sha256": "bca1bf3ebaef30003227b2144707c8f33c62aeb41aff7b4bd68c4a00085dc81c"
+    },
+    {
+      "path": "scripts/build_native_entry_probe.sh",
+      "bytes": 996,
+      "sha256": "2ceeb555555db19058924881cddab280d0abfd20936f103bd30e60f46b33a8d7"
+    },
+    {
+      "path": "scripts/build_native_probe.sh",
+      "bytes": 547,
+      "sha256": "1092b9ef45e8a88d78f7311bb67a2741c99ef9917620f1fde6fa8f3ed571288b"
+    },
+    {
+      "path": "scripts/check_mocha_alloc_candidate.py",
+      "bytes": 8108,
+      "sha256": "1b33e52e81150eddeab7bd7b613a6d422d4c78b84737da667e358541543b007e"
+    },
+    {
+      "path": "scripts/compare_mocha_rpx.py",
+      "bytes": 2382,
+      "sha256": "810bd65bd84c0a5bf9f9142178d10dad7c1a65e7ad956984039b1a8125f0bc75"
+    },
+    {
+      "path": "scripts/finalize_import.py",
+      "bytes": 1121,
+      "sha256": "3f781a39064bf4fecf6d8fc45814353a9f012b8b6454f8a8ac46e0c8a68abf20"
+    },
+    {
+      "path": "scripts/inspect_ios_firmware.py",
+      "bytes": 2339,
+      "sha256": "7e0b7d00f40cc38526526df357b67376092143cee7cbd119368d11b269145cce"
+    },
+    {
+      "path": "scripts/ios_xrefs.py",
+      "bytes": 1948,
+      "sha256": "2ed67ff869fd048d1f3e20a1ea4c0f019c07827a0d3f3db25165254d50e7a028"
+    },
+    {
+      "path": "scripts/make_ios_profile.py",
+      "bytes": 4129,
+      "sha256": "5191e3daa1489d1dad652d40384906d6d51d6bcae9d6a4754d0d18addaffdac7"
+    },
+    {
+      "path": "scripts/make_mocha_boot_profile.py",
+      "bytes": 4058,
+      "sha256": "6ef26b9c056014cad782283f59ab85ab45cc5b5cac5c20f8422b829dad898d74"
+    },
+    {
+      "path": "scripts/mocha_boot_report.py",
+      "bytes": 4249,
+      "sha256": "88337a582b8d6a2e73965eec77aae9b836cd975ff8d8b46dc5b5f12e8bdc4de8"
+    },
+    {
+      "path": "scripts/mocha_diagnostic_deploy.py",
+      "bytes": 9165,
+      "sha256": "f75f4d499815ce8ec70c2cab793ad35a1f58869700b5d4e9f46c6d9c07e79ae6"
+    },
+    {
+      "path": "scripts/package.py",
+      "bytes": 2749,
+      "sha256": "c7148710b6c0038c242422521b47ab4240d45689642d4af06afc98287a95d728"
+    },
+    {
+      "path": "scripts/package_mocha_alloc_review.py",
+      "bytes": 8228,
+      "sha256": "3121af1c929a0b68188a141531c7e26fa7aa9c07f463afb55c6c7b62dd458ec5"
+    },
+    {
+      "path": "scripts/prepare_mocha_alloc_experiment.py",
+      "bytes": 7577,
+      "sha256": "c01d59ba26c2c09134e2bac7bb7018d78c3d2a4b134b8ee375908621afda5407"
+    },
+    {
+      "path": "scripts/relocate_ios_image.py",
+      "bytes": 9436,
+      "sha256": "cb2fdd9a46cc6ff53c163caeaec3f2f507991447b9331d1fa9781f6499297581"
+    },
+    {
+      "path": "scripts/test.sh",
+      "bytes": 5228,
+      "sha256": "8fda96dbed743ce88cc24e4d7299bf499e3c78a76c5c4fc7953d1245e300d43a"
+    },
+    {
+      "path": "scripts/test_native_rx_arm.ps1",
+      "bytes": 881,
+      "sha256": "f4e43eabaa7b22c994f023c7a957024a1de345e8e58f378accf964fff1bfa402"
+    },
+    {
+      "path": "scripts/upload_boot_state_probe.py",
+      "bytes": 1831,
+      "sha256": "fb88b4d0f10f366635671490c4b6c68a4a0614e94819c21ea82672d1b9f4eee5"
+    },
+    {
+      "path": "scripts/wiiu_tcp.py",
+      "bytes": 2903,
+      "sha256": "cd0003f92086facce44e1def2b59774d868d90177d8f8f3140eddb654c485ee7"
+    },
+    {
+      "path": "tests/heartbeat/arch/cc.h",
+      "bytes": 175,
+      "sha256": "76a19dbd4c8156e3450560942fc6859f503ca4f109a36a8dea32e92f7fb76ecc"
+    },
+    {
+      "path": "tests/heartbeat/lwipopts.h",
+      "bytes": 379,
+      "sha256": "8a0230486afea7911c19496725c26d3476dbea4d7e93128990224ba40fb4b3bb"
+    },
+    {
+      "path": "tests/mocha_mock.h",
+      "bytes": 209,
+      "sha256": "a04afc99331cdbd7b91c9767b77ae5d94d7bec2969e3631aa563c2d0c9ff4d42"
+    },
+    {
+      "path": "tests/test_batch_bridge.c",
+      "bytes": 4545,
+      "sha256": "d2d3c909af1e7e9d79a6dc63de0e745c894b43668a1c1d4f979a71658f610da7"
+    },
+    {
+      "path": "tests/test_chip.c",
+      "bytes": 4297,
+      "sha256": "3ad57bc1af978c7dd482119b5708fc60c2751fdf0ea00de8cd5216a469e1ac05"
+    },
+    {
+      "path": "tests/test_completion_bridge.c",
+      "bytes": 1700,
+      "sha256": "d722e9cdd0d3eea3f22914a2daacf874f7be0d56a87cccf2026170f98251b790"
+    },
+    {
+      "path": "tests/test_completion_tokens.c",
+      "bytes": 3796,
+      "sha256": "e627bd23c58b0e376c111bfbdc08ef1b978375607f5e76845bb7b84633d9ede3"
+    },
+    {
+      "path": "tests/test_entry_probe.py",
+      "bytes": 1604,
+      "sha256": "4322b910884b25a2a98314b6f4e11d1d054f85955674ab508aef20f3d5b889b1"
+    },
+    {
+      "path": "tests/test_firmware_rx.c",
+      "bytes": 7784,
+      "sha256": "b8aafc6e78a578e4910b6b3309a3c54615bf0d8004e58530eacc9abb293c9929"
+    },
+    {
+      "path": "tests/test_firmware_tx.c",
+      "bytes": 4657,
+      "sha256": "c8e9f6428d65b72fc1878f257edac791ddd24b29ffe631467dbc1e9e85d88704"
+    },
+    {
+      "path": "tests/test_framing.c",
+      "bytes": 2964,
+      "sha256": "486f3f1d08c99fe00146730110b339b29d452c0e74995b954ceb5ceda7591b49"
+    },
+    {
+      "path": "tests/test_heartbeat.c",
+      "bytes": 1233,
+      "sha256": "371cbc061245c19ddab6203642bb029cf5e2aab77ae28e36606de78ae3b65ec8"
+    },
+    {
+      "path": "tests/test_ios_completion_adapter.c",
+      "bytes": 2720,
+      "sha256": "ebf7a59f13c2d9ef94920f13e87f340fc8bd07ecbbf13e75c2dc37fe259cca54"
+    },
+    {
+      "path": "tests/test_ios_completion_arm.py",
+      "bytes": 4830,
+      "sha256": "1ba417a37b73c2b71ad8efe73aeacea09b6f45e01f19c0286767635045e7ea1a"
+    },
+    {
+      "path": "tests/test_ios_completion_dispatch_arm.py",
+      "bytes": 6462,
+      "sha256": "6e709cc3314ec6f457b31344328223320089304d129529c25fe85600eaaa3716"
+    },
+    {
+      "path": "tests/test_ios_core.c",
+      "bytes": 2557,
+      "sha256": "cb9497330a1f9b117e6522acd9e5dffd4b82430c2a46a115656ee4bb07888ad4"
+    },
+    {
+      "path": "tests/test_ios_firmware_rx_arm.py",
+      "bytes": 7781,
+      "sha256": "7406f875fa6f4a2a40343a7f699c3b01aa44a4a81f24b67342129656976f3cb6"
+    },
+    {
+      "path": "tests/test_ios_map_arm.py",
+      "bytes": 5225,
+      "sha256": "7976363c57c2c46397cae05780e3a7a1bb5e8f512c2d04887d6bb77197bbdf73"
+    },
+    {
+      "path": "tests/test_ios_profile.c",
+      "bytes": 533,
+      "sha256": "ab15d4286501d6c2dda4bba8a016ba8b0f628e584e95283b33e1f88334385b76"
+    },
+    {
+      "path": "tests/test_ios_reload_command_arm.py",
+      "bytes": 4472,
+      "sha256": "f2942591392e1d61244736a3503f71a18286d39c7dd6c78577ce561bbfe5e679"
+    },
+    {
+      "path": "tests/test_ios_rx_lifetime_arm.py",
+      "bytes": 4138,
+      "sha256": "bf447790e2301f61fb4adfce42a8ad30eb1dfb056d94f129f73b9d85b0e4008c"
+    },
+    {
+      "path": "tests/test_ios_submit_close_arm.py",
+      "bytes": 7376,
+      "sha256": "ab45a5a208a20085009d4ced9ae5d1f870a2e35ca8ebead2efc1e2589527195f"
+    },
+    {
+      "path": "tests/test_ios_tokens_worker_arm.py",
+      "bytes": 5209,
+      "sha256": "5f4e4df6fe5c6ba05c6ce552da801d023a696c0842cca60bfe7f66f25c554c73"
+    },
+    {
+      "path": "tests/test_ios_uhs_metadata_arm.py",
+      "bytes": 2575,
+      "sha256": "e819dd19082246a0373558684ddd6f2aba2d3cf85cda3c4baee01337ecd7e8af"
+    },
+    {
+      "path": "tests/test_loader_contract.c",
+      "bytes": 2872,
+      "sha256": "f7ca7a9bcf188e80e84cc5d19c1410476d5d10f09d75af3e0ecd788fd6910004"
+    },
+    {
+      "path": "tests/test_mocha_alloc_arm.py",
+      "bytes": 7281,
+      "sha256": "efdacd8f9ab3d178a28cf8f9b48e878850260a98634050ba5f1c7e9d28f8cdd9"
+    },
+    {
+      "path": "tests/test_mocha_alloc_candidate.py",
+      "bytes": 2007,
+      "sha256": "3d16576f17623742de698f74c12c9f46488d4ecd06479fa19c37dc89bce34a3e"
+    },
+    {
+      "path": "tests/test_mocha_alloc_probe.c",
+      "bytes": 2336,
+      "sha256": "2be89ce0ca192cd8258c811f407bdd311efbb01beb0226d3ef166b640238dfd9"
+    },
+    {
+      "path": "tests/test_mocha_boot_arm.py",
+      "bytes": 13624,
+      "sha256": "de01c47320ca161f0ab2ba34e065b986c95f40ff5a4886b7f49fb7364c066db2"
+    },
+    {
+      "path": "tests/test_mocha_boot_guard.py",
+      "bytes": 4722,
+      "sha256": "ebaa72625a9dc21823ef6198b77c4f4ecc6f24c17451559687a6d448b441a04c"
+    },
+    {
+      "path": "tests/test_mocha_boot_report.py",
+      "bytes": 3637,
+      "sha256": "a609906567c92d02cea4eee64188646e1da69cbeb79dbe85949ee4414e9d0e58"
+    },
+    {
+      "path": "tests/test_mocha_boot_state.py",
+      "bytes": 8766,
+      "sha256": "73840674bc2eb28aa60dc26791d59f90d4bc95c8fec6eb69e2212e117c77b5bd"
+    },
+    {
+      "path": "tests/test_mocha_diagnostic_deploy.py",
+      "bytes": 4697,
+      "sha256": "1feae9332811560305d306434b8507c69632ad3668ad9b13c0f018a79c4e76ab"
+    },
+    {
+      "path": "tests/test_native_frames.c",
+      "bytes": 1533,
+      "sha256": "8ef1b59ade31c09a70604baf374a1f02a68a28c47807123c88e64793035b450b"
+    },
+    {
+      "path": "tests/test_native_glue.c",
+      "bytes": 12810,
+      "sha256": "9d47abc525b3681e96a5d78dc3033580f2331c6d65b3a0fb29d1b1130f366843"
+    },
+    {
+      "path": "tests/test_native_uhs.c",
+      "bytes": 4071,
+      "sha256": "faff80739b081b11c292a88a5ea4cc32e38774e5276bfd60005b6f48e6ea66a4"
+    },
+    {
+      "path": "tests/test_ops_install.c",
+      "bytes": 1801,
+      "sha256": "9d5d418e8d5ece69be1714c029d70608dce85aaa7daf694db8b1c13e782a208f"
+    },
+    {
+      "path": "tests/test_owner.c",
+      "bytes": 3762,
+      "sha256": "19701bcfb0e221785057b14fd4eb1d67172cceea416974d66d052fc6b98e3cb0"
+    },
+    {
+      "path": "tests/test_patch.c",
+      "bytes": 1631,
+      "sha256": "c2b1459411cf029ff03b7ed39fae3aef7743e25b9fb347d556fe82ebe43d64af"
+    },
+    {
+      "path": "tests/test_relocation.py",
+      "bytes": 4230,
+      "sha256": "f30603c8950a64b04ad196e9077a05180b4ff2f93833f447c390bc320b233b01"
+    },
+    {
+      "path": "tests/test_stroopwafel_stage.c",
+      "bytes": 2304,
+      "sha256": "2ff078ab28e7082a880e531f149629c43c80f4bfd8fca25230689ebaca9e3bfd"
+    },
+    {
+      "path": "tests/test_transport.c",
+      "bytes": 7798,
+      "sha256": "c4245e960e98a6c46a0617642e1abf9561e55a00ea0fa49df909658687ce3b0c"
+    },
+    {
+      "path": "tests/uhs_mock.h",
+      "bytes": 2122,
+      "sha256": "6b6ebf0d262493dd40ab98b714706d4b9bf8632b8a1ae57c947e58426b4cb4ee"
+    },
+    {
+      "path": "tools/loader_capability_probe/Makefile",
+      "bytes": 1188,
+      "sha256": "b287ac76132a6e0dde6dc234b157844fe511962c8982c2c42c5ccc873ff3045a"
+    },
+    {
+      "path": "tools/loader_capability_probe/main.c",
+      "bytes": 2065,
+      "sha256": "c27dfe886a038cbdb18c588669a74214e26efe3534097cdab2fee0b369b8d0a7"
+    },
+    {
+      "path": "tools/mocha_boot_state/Makefile",
+      "bytes": 1679,
+      "sha256": "a2727caca99c7065ac92082557e38653cc8984b863e71b9cca8c4eaa6c6ecdfd"
+    },
+    {
+      "path": "tools/mocha_boot_state/main.c",
+      "bytes": 7363,
+      "sha256": "0f5c24932760094f2e7ec28d675a82c5d1f06c6fc9bc49632da8c4b77d3476c3"
+    },
+    {
+      "path": "tools/native_probe/Makefile",
+      "bytes": 1659,
+      "sha256": "ad422ddecffa7a2cb5ebe67465009b4d58c24d93cdc2fc51a5285332d9d8ab52"
+    },
+    {
+      "path": "tools/native_probe/main.c",
+      "bytes": 5442,
+      "sha256": "2cb89f14bdae284031f63fbee021bf712038f000939f5630575891cdc16182d5"
+    }
+  ]
+}

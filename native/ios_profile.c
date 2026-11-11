@@ -1,0 +1,7 @@
+#include "ios_profile.h"
+#include <string.h>
+static const RtlIosFirmwareProfile p={0x12300000u,0x12431844u,0x124c6000u,0x1288d028u,0x124ce314u,0x12456dd0u,0x1288d020u,0x1232ac6cu,0x1232acd0u,0x1232acf0u,0x1232b084u,0x1232b0dcu,0x1232b13cu,0x1232b1a0u,0x123b464cu,0x123b4774u,0x123b4924u,0x123b4bd0u,0x123b5618u,0x123b8e7cu,0x123b94d8u,0x123b9730u,0x123b9cf8u,0x123b9e54u,0x123b9f4cu,0x123ba6b0u,0x123bdbd4u,0x123b920cu};
+const RtlIosFirmwareProfile *rtl_ios_profile_556(void){return &p;}
+static int code(uint32_t a,uint32_t s,uint32_t e){return !(a&3u)&&a>=s&&a<e;}
+int rtl_ios_profile_validate(const RtlIosFirmwareProfile*x){if(!x||x->text_start>=x->text_end||x->bss_start>=x->bss_end||!code(x->discovery_slot,x->bss_start,x->bss_end)||!code(x->context_pointer,x->bss_start,x->bss_end)||!code(x->old_ops,0x12440000u,0x124688e8u)||x->discovery_slot+8>x->bss_end)return -1;return 0;}
+int rtl_ios_profile_validate_callbacks(const RtlIosFirmwareProfile*x,uint32_t s,uint32_t e){if(rtl_ios_profile_validate(x)||s>=e)return -1;const uint32_t v[]={x->eth_install_callbacks,x->eth_rx_release,x->eth_interface_init,x->eth_tx,x->eth_interface_open,x->eth_rx_callback,x->eth_link_callback,x->usb_send_frame,x->usb_set_link,x->usb_open,x->usb_dispatch,x->usb_context_get,x->usb_discovery,x->completion,x->tx_async,x->get_link,x->close,x->open,x->rx_async,x->control_sync,x->post_link};for(unsigned i=0;i<sizeof(v)/sizeof(v[0]);i++)if(!code(v[i],s,e))return -1;return 0;}

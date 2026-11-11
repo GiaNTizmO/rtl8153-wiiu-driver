@@ -1,0 +1,183 @@
+{
+  "name": "owner-5.5.6-ios-net",
+  "decrypted_body_sha256": "3f913ca3b283cd67ad2c2f8fd1c94212a071b73a8ec6ad6d3991ef058708be0e",
+  "elf_sha256": "8ac1ae366b2925f66f19b7f50033103f0ecee45847c9198aa78343a8cd9c4e23",
+  "uid": 7,
+  "cpu": "ARM926EJ-S big endian",
+  "ops_address": 306539984,
+  "ops_words": [
+    194344736,
+    1332,
+    16384,
+    4,
+    8,
+    16384,
+    0,
+    2,
+    305897292,
+    305897044,
+    305896696,
+    305895216,
+    305899184,
+    305894616,
+    305893900
+  ],
+  "interface_table": 310415548,
+  "usb_context_pointer": 310956064,
+  "symbols": {
+    "ifnet_eth_input": {
+      "address": 305170540,
+      "first_word": 3851423800,
+      "fingerprint_sha256_64": "42a53ef5ec2c5c1d41a389a0715e5272b2ced5375e729ba3b36b19647df6118f",
+      "interpretation": "RX IPC object -> native IP stack; no PPC callers established",
+      "evidence": "static ARM disassembly; runtime binding unverified"
+    },
+    "ifnet_worker": {
+      "address": 305170964,
+      "first_word": 3912060912,
+      "fingerprint_sha256_64": "8f8d47300217b9ef9540dd1a963cb3beca92a07366f5e8d11f2386f0204c3ce8",
+      "interpretation": "resource manager message dispatcher",
+      "evidence": "static ARM disassembly; runtime binding unverified"
+    },
+    "eth_install_native_callbacks": {
+      "address": 305310828,
+      "first_word": 3852414992,
+      "fingerprint_sha256_64": "631cee77c0ba4ae8550138465f215b8f81aa39d45a3bbb3115d98808a6eb65ef",
+      "interpretation": "sets native queue/message callback at context +20/+24",
+      "evidence": "static ARM disassembly; runtime binding unverified"
+    },
+    "eth_rx_release": {
+      "address": 305310928,
+      "first_word": 3852414996,
+      "fingerprint_sha256_64": "31b19ed71e763a94367652fd4a8e593ba7fcc904ab96e9108063abb3aff28e22",
+      "interpretation": "called after native RX-copy input; returns batch to driver",
+      "evidence": "static ARM disassembly; runtime binding unverified"
+    },
+    "eth_interface_init": {
+      "address": 305310960,
+      "first_word": 3912057328,
+      "fingerprint_sha256_64": "1a80770a9409047d0d81f98bb5ec7b304563f313eaf90f831a68d17b30377e31",
+      "interpretation": "builds native Ethernet interface callbacks/context",
+      "evidence": "static ARM disassembly; runtime binding unverified"
+    },
+    "eth_tx": {
+      "address": 305311876,
+      "first_word": 3851468992,
+      "fingerprint_sha256_64": "44f8ccf335e6821ad0ca826b83d3766130c644286d5c1508589038c6c40cc551",
+      "interpretation": "native TX callback forwards to usb_eth_send_frame",
+      "evidence": "static ARM disassembly; runtime binding unverified"
+    },
+    "eth_interface_open": {
+      "address": 305311964,
+      "first_word": 3852415048,
+      "fingerprint_sha256_64": "8c24b65f49bb01042aac3486effc8b8941b113e0d4deb8f72bc7e8cf7f3e2c3b",
+      "interpretation": "opens USB Ethernet API with callbacks",
+      "evidence": "static ARM disassembly; runtime binding unverified"
+    },
+    "eth_rx_callback": {
+      "address": 305312060,
+      "first_word": 3912056880,
+      "fingerprint_sha256_64": "a53f8f58a518fbf002e061f7dfa6ea5fafbeb0625fc279f4f7f501b3d685d3dc",
+      "interpretation": "queues native ifnet input; allocator release on send failure",
+      "evidence": "static ARM disassembly; runtime binding unverified"
+    },
+    "eth_link_callback": {
+      "address": 305312160,
+      "first_word": 3796750344,
+      "fingerprint_sha256_64": "041bca9578fdc7a42f196822addbc683099ea9d537938e0090837576ee75025e",
+      "interpretation": "reports link to /dev/net/ifmgr/usbeth",
+      "evidence": "static ARM disassembly; runtime binding unverified"
+    },
+    "usb_eth_send_frame": {
+      "address": 305874508,
+      "first_word": 3912057072,
+      "fingerprint_sha256_64": "9e31a684ac2180160fe913b7f5ecca5526e45f06466c28f1e0fe8645697b7a07",
+      "interpretation": "copies frame into USB driver's TX batch",
+      "evidence": "static ARM disassembly; runtime binding unverified"
+    },
+    "usb_eth_set_link": {
+      "address": 305874804,
+      "first_word": 3912057328,
+      "fingerprint_sha256_64": "b4ec6a2a3dae4b00f412c85b7367ac834d5a70673b6bdade9be94f7a1acbb28c",
+      "interpretation": "synchronous worker request with 20-byte link config",
+      "evidence": "static ARM disassembly; runtime binding unverified"
+    },
+    "usb_eth_open": {
+      "address": 305875236,
+      "first_word": 3912057328,
+      "fingerprint_sha256_64": "328ed2d41ae12da9524a02058dcd0dee8e2cf87ad6b1f74d92c28e6dbfab5031",
+      "interpretation": "MAC destination plus three native callbacks",
+      "evidence": "static ARM disassembly; runtime binding unverified"
+    },
+    "usb_eth_dispatch": {
+      "address": 305875920,
+      "first_word": 3912057328,
+      "fingerprint_sha256_64": "6e57ff86173abe64d496f4c5cad041a0c596123832431e5dfa66583d22e9c1cc",
+      "interpretation": "state transition dispatcher",
+      "evidence": "static ARM disassembly; runtime binding unverified"
+    },
+    "usb_eth_context_get": {
+      "address": 305878552,
+      "first_word": 3852414988,
+      "fingerprint_sha256_64": "e9d91e16eb78eef6d75bae85fccd3694f76a488dd3b1c4e10e8e1ef4d3b41be9",
+      "interpretation": "reads singleton pointer at 1288d020",
+      "evidence": "static ARM disassembly; runtime binding unverified"
+    },
+    "usb_eth_discovery": {
+      "address": 305892988,
+      "first_word": 3813736448,
+      "fingerprint_sha256_64": "9f5c54bd1776507f990ff1bc8d6c5e61461d158391adfdde9555ae0497fd1ba1",
+      "interpretation": "registers 0b95:7720 ops table with internal UHS client",
+      "evidence": "static ARM disassembly; runtime binding unverified"
+    },
+    "asix_rx_completion": {
+      "address": 305894616,
+      "first_word": 3912058352,
+      "fingerprint_sha256_64": "431ef5c72e0f805ac66af0972767f4e7f19ebd2b2f25f6a0230ca345585ad002",
+      "interpretation": "type 1 decapsulates RX, type 2 completes TX, type 3 link IRQ",
+      "evidence": "static ARM disassembly; runtime binding unverified"
+    },
+    "asix_tx_async": {
+      "address": 305895216,
+      "first_word": 3912057328,
+      "fingerprint_sha256_64": "c86e3df0bc68eaa836db76dc596d86946d1b3cd8efb41c79e1d5e89f5ee964ed",
+      "interpretation": "adds ASIX per-frame header and submits USB bulk OUT",
+      "evidence": "static ARM disassembly; runtime binding unverified"
+    },
+    "asix_get_link": {
+      "address": 305896696,
+      "first_word": 3912057328,
+      "fingerprint_sha256_64": "242ed7a3450241032a9502f98a12e3b6e67b304a3c549e1240be2fa764b2ec9e",
+      "interpretation": "writes 20-byte link information",
+      "evidence": "static ARM disassembly; runtime binding unverified"
+    },
+    "asix_close": {
+      "address": 305897044,
+      "first_word": 3912057072,
+      "fingerprint_sha256_64": "90c297ae1b0ad1a6fe501536f44d3f19899b7924428f7ff4d04731b29178af3d",
+      "interpretation": "stops interrupt timer and cancels/releases controller",
+      "evidence": "static ARM disassembly; runtime binding unverified"
+    },
+    "asix_open": {
+      "address": 305897292,
+      "first_word": 3912060912,
+      "fingerprint_sha256_64": "ca0b9ca790bc95a6e758572a464767e0a7f4aa89704af756ce87a2819452630e",
+      "interpretation": "ASIX register init; unsuitable for Realtek",
+      "evidence": "static ARM disassembly; runtime binding unverified"
+    },
+    "asix_rx_async": {
+      "address": 305899184,
+      "first_word": 3912058864,
+      "fingerprint_sha256_64": "528b52f3987f6a4afda5edf02b231372f3571cb299693af2a1edaa23944b0765",
+      "interpretation": "submits 16 KiB bulk IN",
+      "evidence": "static ARM disassembly; runtime binding unverified"
+    },
+    "uhs_control_sync": {
+      "address": 305912788,
+      "first_word": 3912060912,
+      "fingerprint_sha256_64": "98bf051f963438d075fcb26f9d07adba321b62cf01bae3934081d63af7e44aac",
+      "interpretation": "internal UHS control API, ABI not fully bound",
+      "evidence": "static ARM disassembly; runtime binding unverified"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+[submodule "vendor/functionpatcher"]
+	path = vendor/functionpatcher
+	url = https://github.com/wiiu-env/libfunctionpatcher.git
+[submodule "vendor/libmocha"]
+	path = vendor/libmocha
+	url = https://github.com/wiiu-env/libmocha.git
+[submodule "vendor/wums"]
+	path = vendor/wums
+	url = https://github.com/wiiu-env/WiiUModuleSystem.git
+[submodule "upstream/MochaPayload"]
+	path = upstream/MochaPayload
+	url = https://github.com/wiiu-env/MochaPayload.git
+[submodule "upstream/ax88179_aroma_driver"]
+	path = upstream/ax88179_aroma_driver
+	url = https://github.com/wozt/ax88179_aroma_driver.git
+[submodule "upstream/libstroopwafel"]
+	path = upstream/libstroopwafel
+	url = https://github.com/StroopwafelCFW/libstroopwafel.git
+[submodule "upstream/stroopwafel"]
+	path = upstream/stroopwafel
+	url = https://github.com/StroopwafelCFW/stroopwafel.git
